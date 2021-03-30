@@ -1,0 +1,26 @@
+@import './normalize.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+
+.wrapper {
+  min-height: 100vh;
+  padding: 2em 0;
+  //background: #000112;
+  background: radial-gradient(circle, #0A57FA, #010317);
+  //position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

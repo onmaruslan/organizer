@@ -1,0 +1,156 @@
+@import '../../scss/variables';
+
+.card {
+  background: #0E1127;
+  color: $white;
+  width: 20em;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 10em;
+
+  input {
+    width: 100%;
+    font-weight: 700;
+    &::placeholder {
+      color: $grey;
+
+    }
+  }
+
+
+
+  &__delete, &__item_delete,&__add  {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-left: 0.5em;
+    width: 3.5em;
+    border-right: 0.2em solid #01020C;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $background-light;
+    opacity: 0;
+    z-index: -2;
+    transform: translateX(50%);
+    cursor: pointer;
+    svg {
+      width: 60%;
+      fill: $red;
+
+    }
+  }
+  &__delete, &__add {
+    background: #01020C;
+    border-right: 0.2em solid #000;
+  }
+  &__delete {
+    right: -3.55em;
+  }
+  &__add {
+    z-index: -1;
+    svg {
+      fill: $blue
+    }
+  }
+
+  &__title {
+    background: #01020C;
+    padding: 0.5em 1em;
+    position: relative;
+    input {
+      width: 90%;
+    }
+    &:hover {
+      .card__delete, .card__add {
+        opacity: 0.8;
+        transform: translateX(100%);
+        transition: 0.5s;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    z-index: 0;
+    background: #0E1127;
+    color: $white;
+    &.selected {
+      opacity: 0.6;
+    }
+    input {
+      height: 3em;
+      padding: 0 3em 0 1em;
+      border-bottom: 1px solid #525D7C;
+      &:focus {
+        box-shadow: 0 0 0.3em 0.1em rgba($blue, 1);
+        border-bottom: none;
+      }
+    }
+    &:last-child {
+      input {
+        border-bottom: none;
+      }
+    }
+
+    &:hover {
+      background: $background-light;
+      //border: 1px solid $blue;
+
+      &:before {
+        display: none;
+      }
+      .card__item_delete {
+        opacity: 0.8;
+        transform: translateX(100%);
+        transition: 0.5s;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__position, &__item_position {
+    position: absolute;
+
+    right: 0.5em;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    width: 1.8em;
+    cursor: move;
+    svg {
+      fill: $white;
+      transition: 0.3s;
+      pointer-events: none;
+    }
+    &:hover {
+      svg {
+        fill: $blue;
+      }
+    }
+  }
+  //&__item_position {
+  //  svg {
+  //    fill: $white;
+  //    opacity: 1;
+  //  }
+  //  &:hover {
+  //    svg {
+  //      fill: $blue;
+  //    }
+  //  }
+  //}
+}

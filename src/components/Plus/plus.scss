@@ -1,0 +1,54 @@
+@import '../../scss/variables';
+
+.add {
+  background: #010317;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 3em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6em;
+  height: 6em;
+  cursor: pointer;
+  box-shadow: 0 0 3em 1.5em rgba(#38CFFB,1);
+  animation: plus-anim 3s ease-in-out infinite alternate;
+  transition: 0.3s;
+  &.disabled {
+    opacity: 0.7;
+    animation-play-state: paused;
+    pointer-events: none;
+  }
+  &__plus {
+    width: 80%;
+    height: 80%;
+    fill: $blue;
+    svg {
+      will-change: transform;
+      transform: translateZ(0.01px);
+    }
+  }
+
+  &:hover {
+    animation-play-state: paused;
+    .add__plus {
+      transition: 0.8s;
+      transform: rotate(0.5turn);
+    }
+  }
+}
+
+
+@keyframes plus-anim {
+  from {
+    transform: scale(1) translateZ(0.01px);
+    box-shadow: 0 0 3em 1.5em rgba(#38CFFB,1);
+  }
+  to {
+    transform: scale(0.9) translateZ(0.01px);
+    box-shadow: 0 0 3em 1.5em rgba(#38CFFB,0.5);
+  }
+}

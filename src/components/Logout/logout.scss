@@ -1,0 +1,17 @@
+@import '../../scss/variables';
+
+.logout {
+  position: absolute;
+  width: 3em;
+  right: 1.5em;
+  top: 1.5em;
+  cursor: pointer;
+  svg {
+    fill: $red;
+  }
+  opacity: 0.5;
+  transition: 0.3s;
+  &:hover {
+    opacity: 1;
+  }
+}

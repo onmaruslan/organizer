@@ -1,7 +1,7 @@
 @import '../../scss/variables';
 
 .card {
-  background: #0E1127;
+  background: none;
   color: $white;
   width: 20em;
   position: absolute;
@@ -9,7 +9,10 @@
   right: 0;
   margin: 0 auto;
   top: 10em;
-
+  //transform: translate(0,0);
+  transition: 2s;
+  opacity: 0;
+  //z-index: 0;
   input {
     width: 100%;
     font-weight: 700;
@@ -76,22 +79,33 @@
     }
   }
 
+
+  @keyframes card-item {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   &__item {
     position: relative;
     display: flex;
     align-items: center;
     cursor: pointer;
-    z-index: 0;
     background: #0E1127;
     color: $white;
-    &.selected {
-      opacity: 0.6;
-    }
+    opacity: 1;
+    z-index: auto;
+    outline: none;
+    animation: card-item 0.7s linear;
     input {
       height: 3em;
       padding: 0 3em 0 1em;
       border-bottom: 1px solid #525D7C;
       &:focus {
+        z-index: 99;
         box-shadow: 0 0 0.3em 0.1em rgba($blue, 1);
         border-bottom: none;
       }
@@ -104,8 +118,6 @@
 
     &:hover {
       background: $background-light;
-      //border: 1px solid $blue;
-
       &:before {
         display: none;
       }
@@ -128,7 +140,7 @@
     height: 100%;
     display: flex;
     align-items: center;
-    z-index: 2;
+    z-index: 99;
     width: 1.8em;
     cursor: move;
     svg {

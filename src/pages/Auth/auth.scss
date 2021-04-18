@@ -2,21 +2,41 @@
 
 
 .auth-wrap  {
-  font-size: 1vw;
   width: 100%;
   max-width: 39.4em;
   position: relative;
   background: $background-dark;
   padding: 2.6em 5.1em 4em;
+  //padding: 0em 5.1em 4em;
   color: $white;
   font-weight: normal;
+  transition: 1s;
+
+  //
+  //display: flex;
+  //flex-direction: column;
+  //align-items: center;
+  //justify-content: center;
 }
 
+@keyframes auth-anim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 .auth {
   margin-top: 5em;
   position: relative;
-
+  opacity: 0;
+  animation: auth-anim 0.7s linear 0.3s forwards;
+  width: 100%;
+  form {
+    position: relative;
+  }
 
   &__title {
     font-weight: 600;
@@ -32,6 +52,8 @@
     text-align: center;
     display: flex;
     justify-content: space-between;
+    opacity: 0;
+    animation: auth-anim 0.7s linear 0.5s forwards;
     span {
       margin: 0 1em;
     }
@@ -63,7 +85,10 @@
     }
 
   }
-
+  .auth__link {
+    opacity: 1;
+    animation: none;
+  }
   &__input {
     position: relative;
     height: 2.9em;
@@ -80,9 +105,12 @@
       padding: 0 0.8em;
       font-size: 1.05em;
       color: $white;
+      &:-webkit-autofill {
+        -webkit-text-fill-color: $white
+      }
+
       &::placeholder {
         color: $grey;
-
       }
       &.password  {
         &::placeholder {
@@ -254,24 +282,42 @@
     }
   }
 
-  &__success {
+  //&__success {
+  //  position: absolute;
+  //  left: 0;
+  //  top: 0;
+  //  font-size:  1.45em;
+  //  font-weight: 500;
+  //  line-height: 1.4;
+  //  width: 100%;
+  //  height: 100%;
+  //  display: flex;
+  //  flex-direction: column;
+  //  justify-content: space-between;
+  //  &_text {
+  //    transform: translateY(-0.5em);
+  //  }
+  //  &_link {
+  //    margin-top: 0 !important;
+  //  }
+  //}
+
+
+  &__error {
+    color: $red;
     position: absolute;
+    bottom: 4em;
     left: 0;
-    top: 0;
-    font-size:  1.45em;
-    font-weight: 500;
-    line-height: 1.4;
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    &_text {
-      transform: translateY(-0.5em);
-    }
-    &_link {
-      margin-top: 0 !important;
-    }
+    text-align: center;
+  }
+  &__success {
+    color: $blue;
+    position: absolute;
+    bottom: 4em;
+    left: 0;
+    width: 100%;
+    text-align: center;
   }
 }
 

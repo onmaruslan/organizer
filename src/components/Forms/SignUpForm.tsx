@@ -5,7 +5,7 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-import Input from '../../components/Input/Input'
+import Input from '../Input/Input'
 import {setError, signUp} from '../../store/actions/authActions'
 import {useTypedSelector} from '../../hooks/useTypedSelector'
 

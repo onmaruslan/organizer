@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 
 interface Props {
   type: string
@@ -9,7 +9,7 @@ interface Props {
 }
 
 
-const Input = ({type, placeholder, label, errorText, id} : Props) => {
+const Input = forwardRef<HTMLInputElement, Props>(({type, placeholder, label, errorText, id}, ref) => {
 
   const cls = ['auth__input']
   if (errorText) cls.push('error')
@@ -17,9 +17,9 @@ const Input = ({type, placeholder, label, errorText, id} : Props) => {
 
   const $label = (
     (type !== 'checkbox')
-      ? <label htmlFor={type && id}>{label}</label>
+      ? <label htmlFor={id || type}>{label}</label>
       : <>
-        <label htmlFor={type && id}>
+        <label htmlFor={id || type}>
           <svg viewBox="0 0 28 28"><path d="M24.3124 7.81053L10.2881 21.8348L3.68848 15.2351L5.33348 13.5901L10.2881 18.5331L22.6674 6.16553L24.3124 7.81053Z"></path></svg>
         </label>
         <span>{label}</span>
@@ -45,13 +45,15 @@ const Input = ({type, placeholder, label, errorText, id} : Props) => {
   return (
     <div className={cls.join(' ')}>
       <input type={type}
-             id={type && id}
+             id={id || type}
+             name={id || type}
+             ref={ref}
              placeholder={placeholder}/>
       {$label}
 
       {errorText && $error}
     </div>
   )
-}
+})
 
 export default Input

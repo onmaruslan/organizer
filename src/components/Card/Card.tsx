@@ -1,9 +1,16 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import './card.scss'
-import CardList from '../../components/CardList/CardList'
+import CardList from '../CardList/CardList'
 import { useDispatch } from 'react-redux'
-import {addTodo, changePositionCard, changePositionCardDispatch, removeCard, setTitleCard} from '../../store/actions/cardsActions'
+import {
+  addTodo,
+  changePositionCardDispatch,
+  removeCardDispatch,
+  setTitleCard
+} from '../../store/actions/cardsActions'
 import { ICard } from '../../store/types/cardsTypes'
+import { updateCardDB } from '../../functions'
+import { useDebounce } from '../../hooks/useDebounce'
 
 
 interface Props {
@@ -11,22 +18,26 @@ interface Props {
 }
 
 const Card: React.FC<Props> = ({cardDB}) => {
+  const [styles, setStyles] = useState({})
+  const debouncedUpdateCard = useDebounce(cardDB, 500);
   const dispatch = useDispatch()
 
   const $card = useRef<HTMLDivElement | null>(null)
-  const styles = {
-    transform: `translate(${cardDB.position.x}vw,${cardDB.position.y}vw)`
-  }
 
   useEffect(() => {
-    if ($card) {
-      $card.current!.ondragstart = function() {
-        return false
-      };
-    }
+    // отключаем стандартный drag
+    if ($card) $card.current!.ondragstart = () => false
   },[])
 
+  useEffect(() => {
+    // Добавил немного анимации при обновлении страницы
+    setStyles({ transform: `translate(${cardDB.position.x}vw,${cardDB.position.y}vw)`, opacity: 1 })
+  },[cardDB.position])
 
+  // При любом изменении карточки срабатывает debounce и если больше задержек не будет, обновляем на сервере
+  useEffect(() => {
+    updateCardDB(cardDB)
+  },[debouncedUpdateCard]);
 
   return (
     <div ref={$card}
@@ -53,7 +64,7 @@ const Card: React.FC<Props> = ({cardDB}) => {
           </svg>
         </div>
         <div className="card__delete"
-             onClick={() => dispatch(removeCard(cardDB.id))}
+             onClick={() => dispatch(removeCardDispatch(cardDB.id))}
              title="Удалить всю карточку">
           <svg viewBox="0 0 240 240">
             <path d="M120 240c66.168 0 120-53.831 120-120S186.168 0 120 0 0 53.832 0 120s53.832 120 120 120zm0-210c49.626 0 90 40.374 90 90s-40.374 90-90 90-90-40.374-90-90 40.374-90 90-90zM69.144 149.644L98.787 120 69.144 90.356l21.213-21.213L120 98.787l29.644-29.644 21.213 21.213L141.213 120l29.643 29.644-21.213 21.213L120 141.213l-29.644 29.643-21.212-21.212z"/>

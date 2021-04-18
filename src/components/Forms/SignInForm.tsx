@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
-import Input from '../../components/Input/Input'
+import Input from '../Input/Input'
 import {setError, setSuccess, signIn} from '../../store/actions/authActions'
 import {useTypedSelector} from '../../hooks/useTypedSelector'
 import * as yup from 'yup'

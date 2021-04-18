@@ -1,5 +1,5 @@
 import React from 'react'
-import Input from '../../components/Input/Input'
+import Input from '../Input/Input'
 import {Link, Redirect} from 'react-router-dom'
 import {useTypedSelector} from '../../hooks/useTypedSelector'
 import {useDispatch} from 'react-redux'

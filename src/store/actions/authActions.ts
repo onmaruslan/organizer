@@ -35,10 +35,10 @@ export const signIn = (email: string, password: string, remember: boolean) => {
         dispatch(setError(error.code))
         switch (error.code) {
           case 'auth/user-not-found':
-            dispatch(setError('Email или пароль введены не верно'))
+            dispatch(setError('Email or password entered incorrectly'))
             break;
           case 'auth/wrong-password':
-            dispatch(setError('Email или пароль введены не верно'))
+            dispatch(setError('Email or password entered incorrectly'))
             break;
           default:
             dispatch(setError(error.message))
@@ -58,7 +58,7 @@ export const signUp = (email: string, password: string) => {
       .catch((error) => {
         switch (error.code) {
           case 'auth/email-already-in-use':
-            dispatch(setError('Такой email уже используется'))
+            dispatch(setError('This email is already in use'))
             break;
           default:
             dispatch(setError(error.message))
@@ -70,12 +70,12 @@ export const signUp = (email: string, password: string) => {
 export const sendPasswordReset = (email: string) => {
   return (dispatch: Dispatch<AuthAction>) => {
     firebase.auth().sendPasswordResetEmail(email).then(function() {
-      dispatch(setSuccess(`Письмо отправлено на почту ${email}`))
+      dispatch(setSuccess(`The letter was sent to the ${email}`))
 
     }).catch(function(error) {
       switch (error.code) {
         case 'auth/user-not-found':
-          dispatch(setError('Такой пользователь не зарегистрирован'))
+          dispatch(setError('This user is not registered'))
           break;
         default:
           dispatch(setError(error.message))

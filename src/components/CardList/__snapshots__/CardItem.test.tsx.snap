@@ -4,7 +4,7 @@ exports[`CardItem Component should render with given state from props 1`] = `
 Array [
   <input
     onChange={[Function]}
-    placeholder="Новая задача"
+    placeholder="New task"
     type="text"
     value="123"
   />,
@@ -14,7 +14,7 @@ Array [
   <div
     className="card__item_position"
     data-movable-handle={true}
-    title="Изменить расположение задачи"
+    title="Change task priority"
   >
     <svg
       viewBox="0 0 512 512"
@@ -27,7 +27,7 @@ Array [
   <div
     className="card__item_delete"
     onClick={[Function]}
-    title="Удалить задачу"
+    title="Delete task"
   >
     <svg
       viewBox="0 0 240 240"

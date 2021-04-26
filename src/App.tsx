@@ -8,9 +8,8 @@ import Home from './pages/Home/Home'
 
 function App() {
   const user = useTypedSelector(state => state.auth.user)
-
   return (
-    <BrowserRouter>
+    <BrowserRouter  basename="/organizer">
       <div className="App wrapper">
 
         {(user)

@@ -22,11 +22,11 @@ const SignInForm: React.FC = () => {
     email: yup
       .string()
       .email('Email should have correct format')
-      .required('Обязательное поле'),
+      .required('Required field'),
     password: yup
       .string()
-      .required('Обязательное поле')
-      .min(6, 'Минимум 6 символов'),
+      .required('Required field')
+      .min(6, 'Minimum 6 characters'),
     remember: yup
       .boolean()
   })
@@ -62,21 +62,21 @@ const SignInForm: React.FC = () => {
                placeholder="**************"
                ref={register}
                errorText={errors.password?.message}
-               label="Пароль"/>
+               label="Password"/>
         <Input type="checkbox"
                ref={register}
                errorText={errors.remember?.message}
-               label="Запомнить меня"
+               label="Remember me"
                id="remember"/>
 
-        <button className="auth__btn"><span>Войти</span></button>
+        <button className="auth__btn"><span>Login</span></button>
         {(auth.error) ? <div className='auth__error'>{auth.error}</div> : null}
         {(auth.success) ? <div className='auth__success'>{auth.success}</div> : null}
       </form>
 
       <div className="auth__link">
-        <Link to={'/auth/registration'}>Зарегистрироваться?</Link>
-        <Link to={'/auth/restore'}>Забыли пароль?</Link>
+        <Link to={'/auth/registration'}>Sign up?</Link>
+        <Link to={'/auth/restore'}>Forgot password?</Link>
       </div>
     </>
   )

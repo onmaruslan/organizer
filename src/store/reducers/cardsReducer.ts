@@ -18,6 +18,8 @@ const initialState: CardsState = {
 
 export const cardsReducer = (state = initialState, action: CardsAction): CardsState => {
   switch (action.type) {
+
+
     case CardsActionTypes.ADD_NEW_CARD:
       return {...state, cards: [...state.cards, {...initialCard, id: action.payload}]}
 
@@ -64,6 +66,8 @@ export const cardsReducer = (state = initialState, action: CardsAction): CardsSt
         : card)
       return {...state, cards: newCardTodos}
 
+    case CardsActionTypes.RESET_CARDS:
+      return {...state, cards: []}
 
     default:
       return state

@@ -7,6 +7,7 @@ import 'firebase/firestore';   // for cloud firestore
 
 
 
+
 export function addNewCard(): CardsAction {
   return {type: CardsActionTypes.ADD_NEW_CARD, payload: Date.now()}
 }
@@ -41,7 +42,9 @@ export function changePositionCard(idCard: number, x: number, y: number): CardsA
 export function setNewTodosAction(idCard: number, newTodos: ITodo[]): CardsAction {
   return {type: CardsActionTypes.SET_NEW_TODOS, payload: {idCard, newTodos}}
 }
-
+export function resetCards(): CardsAction {
+  return {type: CardsActionTypes.RESET_CARDS}
+}
 
 export function changePositionCardDispatch(e: React.MouseEvent<HTMLDivElement>, elem: HTMLDivElement | null, idCard: number) {
   return (dispatch: Dispatch<CardsAction>) => {

@@ -22,7 +22,7 @@ const RestoreForm: React.FC = () => {
     email: yup
       .string()
       .email('Email should have correct format')
-      .required('Обязательное поле')
+      .required('Required field')
   })
   const {register, handleSubmit, errors} = useForm({
     mode: 'onBlur',
@@ -46,12 +46,12 @@ const RestoreForm: React.FC = () => {
                errorText={errors.email?.message}
                placeholder="example@email.com"
                label="Email"/>
-        <button className="auth__btn"><span>Отправить новый email на почту</span></button>
+        <button className="auth__btn"><span>Send email</span></button>
 
         {(auth.error) ? <div className='auth__error'>{auth.error}</div> : null}
       </form>
       <div className="auth__link">
-        <Link to={'/auth/login'}>Вспомнил пароль</Link>
+        <Link to={'/auth/login'}>Remembered password</Link>
       </div>
     </div>
 

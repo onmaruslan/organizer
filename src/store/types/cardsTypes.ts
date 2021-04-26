@@ -32,9 +32,12 @@ export enum CardsActionTypes {
   SET_TITLE = 'SET_TITLE',
   SET_TITLE_TODO = 'SET_TITLE_TODO',
   CHANGE_POSITION_CARD = 'CHANGE_POSITION_CARD',
-  SET_NEW_TODOS = 'SET_NEW_TODOS'
+  SET_NEW_TODOS = 'SET_NEW_TODOS',
+  RESET_CARDS = 'RESET_CARDS'
 
 }
+
+
 
 interface addNewCardAction {
   type: CardsActionTypes.ADD_NEW_CARD
@@ -77,6 +80,9 @@ interface setNewTodosAction {
   payload: {newTodos: ITodo[], idCard: number}
 }
 
+interface resetCardsAction {
+  type: CardsActionTypes.RESET_CARDS
+}
 export type CardsAction =
   addNewCardAction
   | addTodoAction
@@ -87,3 +93,4 @@ export type CardsAction =
   | changePositionCardAction
   | setNewTodosAction
   | addCardAction
+  | resetCardsAction

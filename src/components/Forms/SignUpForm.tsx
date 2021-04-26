@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {useDispatch} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, useHistory } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -19,6 +19,7 @@ interface formData {
 }
 
 const SignUpForm: React.FC = () => {
+  const history = useHistory();
   const dispatch = useDispatch()
   const auth = useTypedSelector(state => state.auth)
 
@@ -26,11 +27,11 @@ const SignUpForm: React.FC = () => {
     email: yup
       .string()
       .email('Email should have correct format')
-      .required('Обязательное поле'),
+      .required('Required field'),
     password: yup
       .string()
-      .required('Обязательное поле')
-      .min(6, 'Минимум 6 символов'),
+      .required('Required field')
+      .min(6, 'Minimum 6 characters'),
     passwordConfirm: yup
       .string()
       .oneOf([yup.ref('password'), null], 'Passwords must match')
@@ -43,8 +44,9 @@ const SignUpForm: React.FC = () => {
 
   const onSubmit = (e: formData) => {
     dispatch(signUp(e.email, e.password))
-  }
+    history.push('/')
 
+  }
   useEffect(() => {
     return () => {
       dispatch(setError(null))
@@ -65,19 +67,18 @@ const SignUpForm: React.FC = () => {
                placeholder="**************"
                ref={register}
                errorText={errors.password?.message}
-               label="Пароль"/>
+               label="Password"/>
         <Input type="password"
                placeholder="**************"
-               label="Повторите пароль"
+               label="Confirm password"
                ref={register}
                errorText={errors.passwordConfirm?.message}
                id="passwordConfirm"/>
-        <button className="auth__btn"><span>Зарегистрироваться</span></button>
+        <button className="auth__btn"><span>Register</span></button>
         {(auth.error) ? <div className='auth__error'>{auth.error}</div> : null}
       </form>
-
       <div className="auth__link">
-        <Link to={'/auth/login'}>Уже есть аккаунт?</Link>
+        <Link to={'/auth/login'}>Already have an account</Link>
         {/*<a href="./restore.html">Уже есть аккаунт</a>*/}
       </div>
     </>

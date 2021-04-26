@@ -37,24 +37,24 @@ const Auth: React.FC = () => {
   switch (slug) {
     case 'login':
       formRender = <SignInForm />
-      title = 'Вход'
+      title = 'Login'
       break
     case 'registration':
       formRender = <SignUpForm />
-      title = 'Регистрация'
+      title = 'Registration'
       break
     case 'restore':
       formRender = <RestoreForm />
-      title = 'Восстановить пароль'
+      title = 'Restore password'
       break
     default:
-      title = 'Вход'
+      title = 'Login'
       formRender = <Redirect to={'/auth/login'}/>
   }
 
   return (
     <div ref={$authWrap} style={{height: stateHeight}} className="auth-wrap">
-      <div className="auth__title">Авторизация / <span>{title}</span></div>
+      <div className="auth__title">Authorization / <span>{title}</span></div>
       {formRender}
     </div>
   )
